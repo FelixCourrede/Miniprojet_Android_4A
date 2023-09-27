@@ -3,10 +3,12 @@ package com.example.tp01
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -34,8 +36,8 @@ fun Screen (windowClass: WindowSizeClass) {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Box(contentAlignment = Alignment.TopCenter) {
-                        imageTuche()
-                        liensRéseaux()
+                        imageTuche(0)
+                        liensRéseaux(0)
                     }
                 }
             }
@@ -48,7 +50,10 @@ fun Screen (windowClass: WindowSizeClass) {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    Row (Modifier.padding(horizontal = 100.dp)){
+                        imageTuche(1)
+                        liensRéseaux(1)
+                    }
 
                 }
             }
@@ -57,16 +62,25 @@ fun Screen (windowClass: WindowSizeClass) {
 }
 
     @Composable
-    fun imageTuche() {
+    fun imageTuche(i: Int) {
+        var h=0;
+        var v =156
+        var c= CircleShape
+
+        if (i==1){
+            h=30
+            v=25
+            c= RoundedCornerShape(30.dp)
+        }
         Column(horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(horizontal = 0.dp, vertical = 156.dp)) {
+            modifier = Modifier.padding(horizontal = h.dp, vertical = v.dp)) {
             Image(
                 painterResource(id = R.drawable.tuche),
                 contentDescription = "Jeff",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(200.dp)
-                    .clip(CircleShape)
+                    .size(250.dp)
+                    .clip(c)
             )
             Text(text = "Jeff Tuche")
             Text(text = "Président de la république")
@@ -75,8 +89,12 @@ fun Screen (windowClass: WindowSizeClass) {
 
 
     @Composable
-    fun liensRéseaux(){
-        Column(Modifier.padding(top = 450.dp)) {
+    fun liensRéseaux(i: Int){
+        var p=450
+        if (i==1) {
+            p = 100;
+        }
+        Column(Modifier.padding(top = p.dp)) {
             Text(text = "Facebook")
             Text(text = "LinkedIn")
         }
