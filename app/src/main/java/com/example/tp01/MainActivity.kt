@@ -21,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,6 +31,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.example.tp01.ui.theme.Tp01Theme
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
@@ -39,11 +42,20 @@ import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
             override fun onCreate(savedInstanceState: Bundle?) {
                 super.onCreate(savedInstanceState)
                 setContent {
-                    val windowsSizeClass = calculateWindowSizeClass(this)
-                    Screen(windowsSizeClass)
+                    val windowClass = calculateWindowSizeClass(activity = this)
+                    Profil(windowClass)
+                    val navController = rememberNavController()
+
 
 
                 }
 
                 }
+
             }
+@Composable
+fun Screen(windowclass : WindowSizeClass){
+    val navController = rememberNavController()
+    NavHost(
+        navC
+    )
