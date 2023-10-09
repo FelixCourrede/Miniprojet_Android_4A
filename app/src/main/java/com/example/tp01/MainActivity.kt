@@ -34,16 +34,16 @@ import com.example.tp01.ui.theme.Tp01Theme
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 
-class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            val windowsSizeClass = calculateWindowSizeClass(this)
-            Screen(windowsSizeClass)
+        class MainActivity : ComponentActivity() {
+            @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
+            override fun onCreate(savedInstanceState: Bundle?) {
+                super.onCreate(savedInstanceState)
+                setContent {
+                    val windowsSizeClass = calculateWindowSizeClass(this)
+                    Screen(windowsSizeClass)
 
 
-                    }
+                }
 
                 }
             }

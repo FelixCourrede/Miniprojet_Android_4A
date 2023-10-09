@@ -64,12 +64,13 @@ fun Screen (windowClass: WindowSizeClass) {
     @Composable
     fun imageTuche(i: Int) {
         var h=0;
-        var v =156
+        var v =50
         var c= CircleShape
 
         if (i==1){
+            //Ecran allongé
             h=30
-            v=25
+            v=20
             c= RoundedCornerShape(30.dp)
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally,
@@ -90,9 +91,9 @@ fun Screen (windowClass: WindowSizeClass) {
 
     @Composable
     fun liensRéseaux(i: Int){
-        var p=450
+        var p=400
         if (i==1) {
-            p = 100;
+            p = 125;
         }
         Column(Modifier.padding(top = p.dp)) {
             Text(text = "Facebook")
