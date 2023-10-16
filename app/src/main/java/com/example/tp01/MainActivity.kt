@@ -38,7 +38,7 @@ fun Screen(windowClass : WindowSizeClass) {
         Profil(windowClass, navController)
         }
         composable("film"){
-            Films(windowClass)
+            Films(windowClass, navController)
         }
 };
 }

@@ -109,9 +109,9 @@ fun Profil (windowClass: WindowSizeClass, navController:NavController) {
 
     @Composable
     fun bouton(i: Int, navController: NavController){
-        Column() {
-            Button(onClick = {  }) {
-
+        Column(Modifier.padding(top=500.dp)) {
+            Button(onClick = { navController.navigate("film") }) {
+                Text(text = "Voir les films")
             }
         }
     }

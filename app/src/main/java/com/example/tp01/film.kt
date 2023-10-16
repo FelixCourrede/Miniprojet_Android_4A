@@ -15,7 +15,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 
 @Composable
-fun Films(windowClass: WindowSizeClass){}
+fun Films(windowClass: WindowSizeClass, navController: NavController){
+    Button(onClick = {navController.navigate("profil")}) {
+        
+    }
+}
