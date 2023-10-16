@@ -25,17 +25,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.tp01.ui.theme.Tp01Theme
 
 
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
-fun Profil (windowClass: WindowSizeClass) {
+fun Profil (windowClass: WindowSizeClass, navController:NavController) {
     when (windowClass.widthSizeClass) {
         WindowWidthSizeClass.Compact -> {
             Tp01Theme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -43,6 +43,7 @@ fun Profil (windowClass: WindowSizeClass) {
                     Box(contentAlignment = Alignment.TopCenter) {
                         imageTuche(0)
                         liensRéseaux(0)
+                        bouton (0, navController)
                     }
                 }
             }
@@ -107,9 +108,9 @@ fun Profil (windowClass: WindowSizeClass) {
     }
 
     @Composable
-    fun bouton(){
+    fun bouton(i: Int, navController: NavController){
         Column() {
-            Button(onClick = { /*TODO*/ }) {
+            Button(onClick = {  }) {
 
             }
         }
