@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Text
@@ -19,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.component1
 import androidx.navigation.NavController
 
 
@@ -37,7 +39,7 @@ fun Films(
     }
     Log.i("TestRun", movies.results.toString());
     LazyVerticalGrid(columns = GridCells.Fixed(2)) {
-        items(movies.results.size) { movie ->
+        items(movies.results) { movie ->
             FloatingActionButton(
                 onClick = {},
                 modifier = Modifier.padding(20.dp),
@@ -52,6 +54,8 @@ fun Films(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier.fillMaxSize()
                     ) {
+
+                        Text(text = movie.title)
                     }
                 }
             }
