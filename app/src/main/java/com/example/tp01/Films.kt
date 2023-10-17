@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.component1
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 
 
 @Composable
@@ -50,12 +51,17 @@ fun Films(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     Column(
+
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier.fillMaxSize()
                     ) {
+                        AsyncImage(model = "https://image.tmdb.org/t/p/w780/${movie.poster_path}", contentDescription = "Affiche de ${movie.title}")
+                        Text(
+                            text = movie.title
 
-                        Text(text = movie.title)
+                        )
+                        
                     }
                 }
             }
