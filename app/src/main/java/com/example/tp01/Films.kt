@@ -41,8 +41,7 @@ fun Films(
     if (movies.results.isEmpty()) {
         filmViewModel.getFilmsiNitiaux()
     }
-    Log.i("TestRun", movies.results.toString());
-    LazyVerticalGrid(columns = GridCells.Fixed(2)) {
+    LazyVerticalGrid(columns = GridCells.Fixed(2),Modifier.padding(vertical = 45.dp)) {
         items(movies.results) { movie ->
             FloatingActionButton(
                 onClick = {},
