@@ -7,6 +7,9 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,6 +21,7 @@ class MainActivity : ComponentActivity() {
             override fun onCreate(savedInstanceState: Bundle?) {
                 super.onCreate(savedInstanceState)
                 setContent {
+                    print("ok")
                     val windowClass = calculateWindowSizeClass(activity = this)
                     Screen(windowClass)
 
@@ -38,7 +42,7 @@ fun Screen(windowClass : WindowSizeClass) {
         Profil(windowClass, navController)
         }
         composable("film"){
-            Films(windowClass, navController)
+            Films(windowClass, navController, MainViewModel())
         }
 };
 }
