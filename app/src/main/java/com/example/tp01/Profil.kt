@@ -1,5 +1,6 @@
 package com.example.tp01
 
+import android.util.DisplayMetrics
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,8 +14,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,15 +25,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.tp01.ui.theme.Tp01Theme
 
 
+
+@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
-fun Screen (windowClass: WindowSizeClass) {
+fun Profil (windowClass: WindowSizeClass, navController:NavController) {
     when (windowClass.widthSizeClass) {
         WindowWidthSizeClass.Compact -> {
             Tp01Theme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -38,6 +43,7 @@ fun Screen (windowClass: WindowSizeClass) {
                     Box(contentAlignment = Alignment.TopCenter) {
                         imageTuche(0)
                         liensRéseaux(0)
+                        bouton (0, navController)
                     }
                 }
             }
@@ -64,12 +70,13 @@ fun Screen (windowClass: WindowSizeClass) {
     @Composable
     fun imageTuche(i: Int) {
         var h=0;
-        var v =156
+        var v =50
         var c= CircleShape
 
         if (i==1){
+            //Ecran allongé
             h=30
-            v=25
+            v=20
             c= RoundedCornerShape(30.dp)
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally,
@@ -90,9 +97,9 @@ fun Screen (windowClass: WindowSizeClass) {
 
     @Composable
     fun liensRéseaux(i: Int){
-        var p=450
+        var p=400
         if (i==1) {
-            p = 100;
+            p = 125;
         }
         Column(Modifier.padding(top = p.dp)) {
             Text(text = "Facebook")
@@ -101,10 +108,10 @@ fun Screen (windowClass: WindowSizeClass) {
     }
 
     @Composable
-    fun bouton(){
-        Column() {
-            Button(onClick = { /*TODO*/ }) {
-
+    fun bouton(i: Int, navController: NavController){
+        Column(Modifier.padding(top=500.dp)) {
+            Button(onClick = { navController.navigate("film") }) {
+                Text(text = "Voir les films")
             }
         }
     }
