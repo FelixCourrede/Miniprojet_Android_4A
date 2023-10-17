@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.component1
 import androidx.navigation.NavController
@@ -59,7 +60,8 @@ fun Films(
                         modifier = Modifier.fillMaxSize()
                     ) {
                         AsyncImage(model = "https://image.tmdb.org/t/p/w780/${movie.poster_path}", contentDescription = "Affiche de ${movie.title}")
-                        Text(text = movie.title, textAlign = TextAlign.Center , )
+                        Text(text = movie.title, textAlign = TextAlign.Center , textDecoration = TextDecoration.Underline )
+                        Text(text = movie.release_date)
                         
                     }
                 }
