@@ -111,7 +111,7 @@ fun Profil (windowClass: WindowSizeClass, navController:NavController) {
     fun bouton(i: Int, navController: NavController){
         Column(Modifier.padding(top=500.dp)) {
             Button(onClick = { navController.navigate("film") }) {
-                Text(text = "Voir les films")
+                Text(text = "Voir les films de Jeff")
             }
         }
     }

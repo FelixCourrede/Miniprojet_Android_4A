@@ -21,7 +21,6 @@ class MainActivity : ComponentActivity() {
             override fun onCreate(savedInstanceState: Bundle?) {
                 super.onCreate(savedInstanceState)
                 setContent {
-                    print("ok")
                     val windowClass = calculateWindowSizeClass(activity = this)
                     Screen(windowClass)
 
