@@ -93,6 +93,11 @@ fun Screen(windowClass : WindowSizeClass) {
             composable("Series") {
                 SeriesFun(windowClass, navController, MainViewModel())
             }
+
+            composable("filmDetail/{movieId}"){backStackEntry ->
+                val movieId = backStackEntry.arguments?.getString("movieId") ?: ""
+                DetailMovie(navController, movieId)
+            }
         }
         })
 }

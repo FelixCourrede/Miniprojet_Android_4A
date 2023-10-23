@@ -3,6 +3,7 @@ package com.example.tp01
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface Api {
@@ -11,5 +12,8 @@ interface Api {
 
     @GET("trending/tv/week")
     suspend fun lastseries(@Query("api_key") api_key: String, @Query("language") language: String): TmdbSeriesResult
+
+    @GET("movie/{id}?append_to_response=credits")
+    suspend fun moviedetails(@Path("id") id: String, @Query("api_key") api_key: String, @Query("language") language: String): TmdbMovieDetail
 }
 

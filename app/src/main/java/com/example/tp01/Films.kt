@@ -43,8 +43,9 @@ fun Films(
     }
     LazyVerticalGrid(columns = GridCells.Fixed(2),Modifier.padding(vertical = 45.dp)) {
         items(movies.results) { movie ->
+            val id=movie.id;
             FloatingActionButton(
-                onClick = {},
+                onClick = {navController.navigate("filmDetail/${movie.id}")},
                 modifier = Modifier.padding(20.dp),
                 containerColor = Color.White
             ) {
