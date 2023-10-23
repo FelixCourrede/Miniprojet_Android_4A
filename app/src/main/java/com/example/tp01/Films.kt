@@ -67,6 +67,4 @@ fun Films(
             }
         }
     }
-    Button(onClick = { navController.navigate("profil") }, ) {
-        Text(text = "En revenir a Jeff")}
 }

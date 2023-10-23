@@ -37,13 +37,12 @@ fun Profil (windowClass: WindowSizeClass, navController:NavController) {
         WindowWidthSizeClass.Compact -> {
             Tp01Theme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize().padding(vertical = 50.dp),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Box(contentAlignment = Alignment.TopCenter) {
                         imageTuche(0)
                         liensRéseaux(0)
-                        bouton (0, navController)
                     }
                 }
             }
@@ -70,7 +69,7 @@ fun Profil (windowClass: WindowSizeClass, navController:NavController) {
     @Composable
     fun imageTuche(i: Int) {
         var h=0;
-        var v =50
+        var v =30
         var c= CircleShape
 
         if (i==1){
@@ -97,7 +96,7 @@ fun Profil (windowClass: WindowSizeClass, navController:NavController) {
 
     @Composable
     fun liensRéseaux(i: Int){
-        var p=400
+        var p=325
         if (i==1) {
             p = 125;
         }
@@ -109,7 +108,7 @@ fun Profil (windowClass: WindowSizeClass, navController:NavController) {
 
     @Composable
     fun bouton(i: Int, navController: NavController){
-        Column(Modifier.padding(top=500.dp)) {
+        Column(Modifier.padding(top=400.dp)) {
             Button(onClick = { navController.navigate("film") }) {
                 Text(text = "Voir les films de Jeff")
             }
