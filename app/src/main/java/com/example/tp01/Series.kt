@@ -37,7 +37,7 @@ import coil.compose.AsyncImage
         LazyVerticalGrid(columns = GridCells.Fixed(2), Modifier.padding(vertical = 45.dp)) {
             items(series.results) { serie ->
                 FloatingActionButton(
-                    onClick = {},
+                    onClick = {navController.navigate("serieDetail/${serie.id}")},
                     modifier = Modifier.padding(20.dp),
                     containerColor = Color.White
                 ) {

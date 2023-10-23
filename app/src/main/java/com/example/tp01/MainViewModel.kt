@@ -11,6 +11,7 @@ class MainViewModel : ViewModel() {
     val movies = MutableStateFlow<TmdbMovieResult>(TmdbMovieResult());
     val series = MutableStateFlow<TmdbSeriesResult>(TmdbSeriesResult());
     val movie = MutableStateFlow<TmdbMovieDetail>(TmdbMovieDetail())
+    val serie = MutableStateFlow<TmdbSerieDetail>(TmdbSerieDetail())
 
     val retrofit = Retrofit.Builder()
         .baseUrl("https://api.themoviedb.org/3/")
@@ -40,6 +41,12 @@ class MainViewModel : ViewModel() {
     fun getMovieDetail(movieid: String){
         viewModelScope.launch {
             movie.value = api.moviedetails(movieid, "166e544a3195c0c362b7c9294e90775d", "fr")
+        }
+    }
+
+    fun getSerieDetail(serieid: String){
+        viewModelScope.launch {
+            serie.value = api.seriedetails(serieid,"166e544a3195c0c362b7c9294e90775d", "fr")
         }
     }
 }
