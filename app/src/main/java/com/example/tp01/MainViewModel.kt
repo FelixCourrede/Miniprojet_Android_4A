@@ -49,4 +49,11 @@ class MainViewModel : ViewModel() {
             serie.value = api.seriedetails(serieid,"166e544a3195c0c362b7c9294e90775d", "fr")
         }
     }
+
+    fun searchMovies(txtRecherche: String) {
+        viewModelScope.launch {
+            movies.value = api.search("166e544a3195c0c362b7c9294e90775d", txtRecherche)
+        }
+    }
+
 }

@@ -10,6 +10,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.MaterialTheme.colors
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.Scaffold
@@ -29,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.material3.SearchBar
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.*
@@ -57,19 +61,41 @@ class MainActivity : ComponentActivity() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun Screen(windowClass : WindowSizeClass) {
+    val viewModel = MainViewModel()
+    var searchVisible = false
     val navController = rememberNavController()
     Scaffold(
-            topBar = {
-                CenterAlignedTopAppBar(
-                title ={Text("Les films de Jeff")},
+        topBar = {
+            if (!searchVisible) {
+                TopAppBar (
+                    title = {Text("Films en Tendance")},
+                    actions = {
+                        IconButton(onClick = {searchVisible = true}) {
+                            Icon(Icons.Filled.Search, contentDescription = "Search")
+                        }
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = viewModel()) {
+                            Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Localized Description"
+                            )
+                        }
+                    }
+                )
+            } else {
+                SearchBar(
+                    modifier = Modifier.padding(top = 8.dp),
+                    query = searchText,
+                    onQueryChange = { searchText = it },
+                    onSearch = { viewModel.searchMovies(searchText)
+                        searchVisible = false},
+                    active = true,
+                    onActiveChange = {},
+                    placeholder = { Text("Mot Clé") }
+                )
+                {}
+            }
 
-                    colors= TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = Purple40,
-                    titleContentColor = Color.White,
-                ),
-                modifier=Modifier.height(50.dp)
-            )
-            },
+        },
 
 
     bottomBar = {
