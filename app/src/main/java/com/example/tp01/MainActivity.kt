@@ -115,6 +115,21 @@ fun BottomNavBar(navController: NavController){
         actions = {
             Row(modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly){
+
+                IconButton(onClick = { navController.navigate("Profil") }, Modifier.size(50.dp)) {
+                    Column(verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,) {
+                        Icon(
+                            painter = painterResource(
+                                id = R.drawable._133312
+                            ),
+                            contentDescription = "Localized description",
+                            tint = Color.White,
+                        )
+                        Text(text = "Acceuil", color = Color.White, fontSize = 10.sp)
+                    }}
+
+
                 IconButton(onClick = { navController.navigate("film") }, Modifier.size(50.dp)) {
                     Column(verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally){
@@ -126,7 +141,7 @@ fun BottomNavBar(navController: NavController){
                         Text(text = "Films", color = Color.White, fontSize = 10.sp)
                     }
         }
-                IconButton(onClick = { navController.navigate("Series") }, Modifier.size(95.dp)) {
+                IconButton(onClick = { navController.navigate("Series") }, Modifier.size(50.dp)) {
                     Column(verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally,) {
                         Icon(
@@ -137,4 +152,7 @@ fun BottomNavBar(navController: NavController){
                             tint = Color.White,
                         )
                         Text(text = "Séries", color = Color.White, fontSize = 10.sp)
-                    }}}})}
+                    }}
+
+
+            }})}
