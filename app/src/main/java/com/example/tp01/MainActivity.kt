@@ -1,5 +1,4 @@
 package com.example.tp01
-
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.compose.material.MaterialTheme
@@ -10,9 +9,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.MaterialTheme.colors
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.Scaffold
@@ -32,10 +28,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.material3.SearchBar
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.*
@@ -43,100 +35,60 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tp01.ui.theme.Purple40
-
-
 class MainActivity : ComponentActivity() {
-            @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
-            override fun onCreate(savedInstanceState: Bundle?) {
-                super.onCreate(savedInstanceState)
-                setContent {
-                    val windowClass = calculateWindowSizeClass(activity = this)
-                    Screen(windowClass)
-
-
-
-                }
-
-                }
-
-            }
+    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            val windowClass = calculateWindowSizeClass(activity = this)
+            Screen(windowClass)
+        }
+    }
+}
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun Screen(windowClass : WindowSizeClass) {
-    var searchText by remember {mutableStateOf("")}
-    val viewModel = MainViewModel()
-    var searchVisible = false
     val navController = rememberNavController()
     Scaffold(
         topBar = {
-            if (!searchVisible) {
-                TopAppBar (
-                    title = {Text("Films en Tendance")},
-                    actions = {
-                        IconButton(onClick = {searchVisible = true}) {
-                            Icon(Icons.Filled.Search, contentDescription = "Search")
-                        }
-                    },
-                    navigationIcon = {
-                        IconButton(onClick = viewModel()) {
-                            Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Localized Description"
-                            )
-                        }
-                    }
-                )
-            } else {
-                SearchBar(
-                    modifier = Modifier.padding(top = 8.dp),
-                    query = searchText,
-                    onQueryChange = { searchText = it },
-                    onSearch = { viewModel.searchMovies(searchText)
-                        searchVisible = false},
-                    active = true,
-                    onActiveChange = {},
-                    placeholder = { Text("Mot Clé") }
-                )
-                {}
-            }
-
+            CenterAlignedTopAppBar(
+                title ={Text("Les films de Jeff")},
+                colors= TopAppBarDefaults.mediumTopAppBarColors(
+                    containerColor = Purple40,
+                    titleContentColor = Color.White,
+                ),
+                modifier=Modifier.height(50.dp)
+            )
         },
-
-
-    bottomBar = {
-        BottomNavBar(navController)
-    },
-
-
-    content={it
-
-        NavHost(
-            navController = navController,
-            startDestination = "Profil"
-        ) {
-            composable("Profil") {
-                Profil(windowClass, navController)
+        bottomBar = {
+            BottomNavBar(navController)
+        },
+        content={it
+            NavHost(
+                navController = navController,
+                startDestination = "Profil"
+            ) {
+                composable("Profil") {
+                    Profil(windowClass, navController)
+                }
+                composable("film") {
+                    Films(windowClass, navController, MainViewModel())
+                }
+                composable("Series") {
+                    SeriesFun(windowClass, navController, MainViewModel())
+                }
+                composable("filmDetail/{movieId}"){backStackEntry ->
+                    val movieId = backStackEntry.arguments?.getString("movieId") ?: ""
+                    DetailMovie(navController, movieId)
+                }
+                composable("serieDetail/{movieId}"){backStackEntry ->
+                    val serieId = backStackEntry.arguments?.getString("movieId") ?: ""
+                    DetailSerie(navController, serieId)
+                }
             }
-            composable("film") {
-                Films(windowClass, navController, MainViewModel())
-
-            }
-            composable("Series") {
-                SeriesFun(windowClass, navController, MainViewModel())
-            }
-
-            composable("filmDetail/{movieId}"){backStackEntry ->
-                val movieId = backStackEntry.arguments?.getString("movieId") ?: ""
-                DetailMovie(navController, movieId)
-            }
-
-            composable("serieDetail/{movieId}"){backStackEntry ->
-                val serieId = backStackEntry.arguments?.getString("movieId") ?: ""
-                DetailSerie(navController, serieId)
-            }
-        }
         })
 }
-
 @Composable
 fun BottomNavBar(navController: NavController){
     BottomAppBar(
@@ -170,7 +122,7 @@ fun BottomNavBar(navController: NavController){
                         )
                         Text(text = "Films", color = Color.White, fontSize = 10.sp)
                     }
-        }
+                }
                 IconButton(onClick = { navController.navigate("Series") }, Modifier.size(50.dp)) {
                     Column(verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally,) {

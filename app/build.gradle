@@ -70,4 +70,8 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
+    constraints {
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0'
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0'
+    }
 }
